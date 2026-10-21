@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Dead Sea Scrolls Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dome:#F5F6F3;      /* the white dome of the Shrine of the Book */
+  --basalt:#23241F;    /* the black basalt wall facing it */
+  --basalt-2:#33342E;
+  --skin:#B89A6A;      /* parchment */
+  --skin-pale:#E7DCC6;
+  --rubric:#9B2D20;    /* red ink, used by some Qumran scribes */
+  --salt:#2F6F73;      /* Dead Sea water */
+  --line:#D6D4CC;
+  --muted:#5D5E57;
+  --serif:'Frank Ruhl Libre', 'Times New Roman', serif;
+  --sans:'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--dome);color:var(--basalt);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--salt);text-underline-offset:2px}
+a:hover{color:var(--rubric)}
+:focus-visible{outline:2px solid var(--rubric);outline-offset:2px}
+img{max-width:100%;display:block}
+
+/* ---------- hero: black wall / white dome ---------- */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:88vh}
+.hero .wall{background:var(--basalt);color:var(--dome);padding:clamp(28px,6vw,80px);display:flex;flex-direction:column;justify-content:flex-end}
+.hero .dome{background:var(--dome);padding:clamp(28px,6vw,80px);display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
+.hero .dome::before{content:"";position:absolute;width:120%;aspect-ratio:1;border-radius:50%;border:1px solid var(--line);right:-55%;top:-50%}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(3rem,8.5vw,7.5rem);line-height:.92;margin:0;letter-spacing:-.02em}
+.hero h1 span{display:block}
+.hero .wall h1{color:var(--dome)}
+.hero .dome h1{color:var(--basalt);text-align:right}
+.hero .he{font-family:var(--serif);font-size:clamp(1.4rem,2.6vw,2rem);direction:rtl;margin:0 0 2.2rem;color:var(--skin)}
+.hero .dome .he{text-align:left;color:var(--salt)}
+.hero .lede{max-width:34rem;font-size:1.06rem;margin:2rem 0 0;color:#D9DAD3}
+.hero .dome .lede{color:var(--muted);margin-left:auto;text-align:right;position:relative}
+.hero .note{font-size:.82rem;color:#9C9D94;margin-top:2.4rem;max-width:30rem}
+
+/* ---------- layout ---------- */
+.shell{display:grid;grid-template-columns:230px minmax(0,1fr);gap:56px;max-width:1240px;margin:0 auto;padding:64px 28px 96px}
+nav.toc{position:sticky;top:24px;align-self:start;font-size:.9rem}
+nav.toc p{font-family:var(--serif);font-weight:700;font-size:1.05rem;margin:0 0 .6rem}
+nav.toc ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
+nav.toc li a{display:block;padding:.28rem 0 .28rem 14px;color:var(--muted);text-decoration:none;border-left:2px solid transparent;margin-left:-1px}
+nav.toc li a:hover,nav.toc li a.on{color:var(--basalt);border-left-color:var(--rubric)}
+main{min-width:0}
+section{margin:0 0 88px}
+h2{font-family:var(--serif);font-weight:700;font-size:clamp(2rem,3.6vw,2.8rem);line-height:1.05;margin:0 0 1.1rem;letter-spacing:-.01em}
+h3{font-family:var(--serif);font-weight:700;font-size:1.45rem;line-height:1.15;margin:2.2rem 0 .6rem}
+.prose{max-width:44rem}
+.prose p{margin:0 0 1rem}
+.small{font-size:.86rem;color:var(--muted)}
+
+/* facts strip */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--basalt);border-bottom:1px solid var(--line);margin:2rem 0}
+.facts div{padding:18px 16px 18px 0}
+.facts b{display:block;font-family:var(--serif);font-size:2.2rem;line-height:1;font-weight:700}
+.facts span{font-size:.86rem;color:var(--muted)}
+
+/* timeline (a real sequence) */
+.timeline{list-style:none;padding:0;margin:1.5rem 0 0;max-width:46rem}
+.timeline li{display:grid;grid-template-columns:96px 1fr;gap:20px;padding:14px 0;border-top:1px solid var(--line)}
+.timeline time{font-family:var(--serif);font-weight:700;font-size:1.25rem;color:var(--rubric)}
+.timeline p{margin:0}
+
+/* sites */
+.sites{width:100%;border-collapse:collapse;font-size:.94rem;margin-top:1rem}
+.sites th{text-align:left;font-weight:600;border-bottom:2px solid var(--basalt);padding:8px 10px 8px 0}
+.sites td{border-bottom:1px solid var(--line);padding:10px 10px 10px 0;vertical-align:top}
+.sites td:first-child{font-family:var(--serif);font-weight:700;font-size:1.1rem;white-space:nowrap}
+.sites td.n{text-align:right;font-variant-numeric:tabular-nums}
+
+/* highlights */
+.scroll{display:grid;align-items:start;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:32px;padding:34px 0;border-top:1px solid var(--line)}
+.scroll:nth-of-type(even){grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.scroll:nth-of-type(even) figure{order:2}
+.scroll figure{margin:0;background:var(--skin-pale);padding:12px}
+.scroll figure img{width:100%;height:auto;max-height:420px;object-fit:contain;background:var(--basalt)}
+.scroll figcaption{font-size:.76rem;color:var(--muted);margin-top:8px;line-height:1.45}
+.scroll .sig{font-family:var(--serif);color:var(--rubric);font-weight:700}
+.scroll h3{margin-top:.2rem;font-size:1.8rem}
+.scroll dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:.88rem;margin:1rem 0}
+.scroll dt{color:var(--muted)}
+.scroll dd{margin:0}
+.scroll .links a{margin-right:14px;font-size:.9rem}
+.noimg{display:flex;align-items:center;justify-content:center;min-height:220px;background:var(--basalt);color:#9C9D94;font-size:.9rem;padding:20px;text-align:center}
+
+/* catalogue */
+.controls{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin:1.2rem 0 .6rem;position:sticky;top:0;background:var(--dome);padding:10px 0;z-index:2}
+.controls input,.controls select{font:inherit;font-size:.92rem;padding:9px 10px;border:1px solid #BDBBB2;background:#fff;color:var(--basalt);border-radius:2px;width:100%}
+.count{font-size:.86rem;color:var(--muted);margin:0 0 .4rem}
+.tablewrap{overflow-x:auto;border-top:2px solid var(--basalt)}
+table.cat{width:100%;border-collapse:collapse;font-size:.86rem}
+table.cat th{position:sticky;top:0;text-align:left;font-weight:600;padding:8px 8px;border-bottom:1px solid var(--basalt);background:var(--dome);cursor:pointer;white-space:nowrap;user-select:none}
+table.cat th[aria-sort="ascending"]::after{content:" ▲";font-size:.7em}
+table.cat th[aria-sort="descending"]::after{content:" ▼";font-size:.7em}
+table.cat td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+table.cat tr:hover td{background:#ECEDE8}
+table.cat td.sig{font-weight:600;white-space:nowrap}
+table.cat td.sig .desc{font-weight:400}
+table.cat td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.cat td.name{min-width:180px}
+table.cat .desc{display:block;color:var(--muted);font-size:.8rem;margin-top:2px}
+.tag{display:inline-block;font-size:.72rem;padding:1px 7px;border-radius:9px;white-space:nowrap}
+.tag.Biblical{background:#DCE8E6;color:#1E4C4F}
+.tag.Non-biblical{background:var(--skin-pale);color:#5A4521}
+.tag.Tefillin{background:#E9E1EC;color:#4B3556}
+.tag.Documentary{background:#F0DDD8;color:#7A2418}
+.more{margin:14px 0 0;display:flex;gap:10px;align-items:center}
+button{font:inherit;font-size:.9rem;padding:9px 16px;border:1px solid var(--basalt);background:var(--basalt);color:var(--dome);cursor:pointer;border-radius:2px}
+button.ghost{background:transparent;color:var(--basalt)}
+
+/* siglum anatomy */
+.anatomy{display:flex;flex-wrap:wrap;gap:0;margin:1.4rem 0;font-family:var(--serif);font-size:clamp(2rem,5vw,3.4rem);font-weight:700}
+.anatomy span{display:flex;flex-direction:column;align-items:flex-start;padding:0 6px 0 0}
+.anatomy small{font-family:var(--sans);font-size:.78rem;font-weight:400;color:var(--muted);border-top:2px solid var(--rubric);padding-top:4px;margin-top:4px;max-width:9rem;line-height:1.3}
+.abbr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 28px;font-size:.92rem;max-width:44rem}
+.abbr div{padding:6px 0;border-bottom:1px solid var(--line)}
+.abbr b{font-family:var(--serif);margin-right:8px}
+
+.archives{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:1rem}
+.archives div{border-top:2px solid var(--basalt);padding-top:12px}
+.archives h4{font-family:var(--serif);font-size:1.2rem;margin:0 0 .3rem}
+.archives p{margin:0;font-size:.92rem}
+
+.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:1.2rem}
+.gallery figure{margin:0}
+.gallery img{width:100%;aspect-ratio:4/3;object-fit:contain;background:var(--basalt)}
+.gallery figcaption{font-size:.76rem;color:var(--muted);margin-top:6px;line-height:1.4}
+
+footer{background:var(--basalt);color:#C9CAC2;padding:48px 28px;font-size:.86rem}
+footer .in{max-width:1240px;margin:0 auto}
+footer a{color:var(--skin)}
+footer h2{color:var(--dome);font-size:1.6rem}
+footer ul{padding-left:1.1rem}
+
+@media (max-width:980px){
+  .shell{grid-template-columns:1fr;gap:0;padding-top:40px}
+  nav.toc{position:static;margin-bottom:40px}
+  nav.toc ol{columns:2}
+  table.cat{min-width:780px}
+  .controls{grid-template-columns:1fr 1fr}
+  .controls input{grid-column:1/-1}
+}
+@media (max-width:720px){
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero .dome h1,.hero .dome .lede{text-align:left;margin-left:0}
+  .hero .dome .he{text-align:right}
+  .facts{grid-template-columns:1fr 1fr}
+  .scroll,.scroll:nth-of-type(even){grid-template-columns:1fr}
+  .scroll:nth-of-type(even) figure{order:0}
+  .abbr,.archives{grid-template-columns:1fr}
+  .gallery{grid-template-columns:1fr 1fr}
+  .timeline li{grid-template-columns:70px 1fr;gap:12px}
+  .shell{padding:32px 16px 64px}
+  nav.toc ol{columns:1}
+}
+@media print{
+  .hero{min-height:auto} nav.toc,.controls,.more{display:none}
+  .shell{display:block} .tablewrap{overflow:visible}
+}
+.to-cat{background:var(--basalt);color:var(--dome);padding:36px 32px;margin-left:0}
+.to-cat h2{color:var(--dome)}
+.to-cat .prose{color:#D9DAD3}
+a.cta{display:inline-block;background:var(--dome);color:var(--basalt);padding:11px 20px;text-decoration:none;font-weight:600;border-radius:2px}
+a.cta:hover{background:var(--skin);color:var(--basalt)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wall">
+    <p class="he">בני חושך</p>
+    <h1><span>The</span><span>Dead Sea</span></h1>
+    <p class="lede">Roughly a thousand manuscripts, copied between about 250 BCE and 135 CE and hidden in caves above the Dead Sea. Most were found between 1947 and 1956, and they are still being studied today.</p>
+    <p class="note">The two halves of this page echo the Shrine of the Book in Jerusalem, where a black basalt wall faces a white dome: the "Sons of Darkness" and "Sons of Light" of the War Scroll.</p>
+  </div>
+  <div class="dome">
+    <p class="he">בני אור</p>
+    <h1><span>Scrolls</span></h1>
+    <p class="lede">A guide to what they are, how they were found and the most important scrolls, with photographs. A <a href="dead-sea-scrolls-catalogue.html">separate catalogue</a> lists every manuscript with its full text in the original language and in English.</p>
+  </div>
+</header>
+
+<div class="shell">
+<nav class="toc" aria-label="Contents">
+  <p>Contents</p>
+  <ol>
+    <li><a href="#overview">What they are</a></li>
+    <li><a href="#discovery">How they were found</a></li>
+    <li><a href="#sites">The caves and sites</a></li>
+    <li><a href="#contents">What the scrolls contain</a></li>
+    <li><a href="#highlights">The major scrolls</a></li>
+    <li><a href="#gallery">Places and objects</a></li>
+    <li><a href="#catalogue">The full catalogue</a></li>
+    <li><a href="#book">The book edition</a></li>
+    <li><a href="#sigla">Reading a scroll's label</a></li>
+    <li><a href="#photos">Where to see the photos</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section id="overview">
+  <h2>What they are</h2>
+  <div class="prose">
+    <p>The Dead Sea Scrolls are ancient Jewish manuscripts found in caves in the Judaean Desert, on the north-western shore of the Dead Sea. In the narrow sense the name refers to the scrolls from eleven caves near the ruins of Khirbet Qumran. More broadly it also covers manuscripts from other desert sites, such as Masada, Wadi Murabba'at and Nahal Hever.</p>
+    <p>The Qumran scrolls were copied from about the mid-3rd century BCE to the 1st century CE. They were probably hidden around the time the Romans destroyed the settlement at Qumran, during the Jewish revolt of 66–73 CE. The material from the other sites runs later, into the Bar Kokhba revolt of 132–135 CE.</p>
+    <p>Almost all of them survive only as fragments. A few are long and well preserved, like the Great Isaiah Scroll, but most are scraps, some no bigger than a fingernail. Scholars have sorted tens of thousands of fragments into roughly 950–1,000 separate manuscripts.</p>
+    <p>Before they were found, the oldest complete Hebrew Bible manuscripts dated to around 1000 CE. The scrolls are about a thousand years older. They showed both how carefully the biblical text had been copied, and that several different versions of some books were in circulation before the text was standardised.</p>
+  </div>
+  <div class="facts">
+    <div><b>11</b><span>Qumran caves with scrolls</span></div>
+    <div><b>~1,000</b><span>separate manuscripts</span></div>
+    <div><b>3</b><span>languages: Hebrew, Aramaic, Greek</span></div>
+    <div><b>~230</b><span>copies of biblical books from Qumran</span></div>
+  </div>
+</section>
+
+<section id="discovery">
+  <h2>How they were found</h2>
+  <ol class="timeline">
+    <li><time>1946–47</time><p>Bedouin shepherds of the Ta'amireh tribe, Muhammad edh-Dhib and his cousins, find jars holding seven scrolls in a cave (later Cave 1) near Qumran.</p></li>
+    <li><time>1947</time><p>The scrolls pass through a Bethlehem antiquities dealer, Khalil Iskander Shahin ("Kando"). Eleazar Sukenik of the Hebrew University buys three (Isaiah b, War Scroll, Thanksgiving Hymns). Mar Athanasius Samuel, the Syrian Orthodox metropolitan, buys the other four.</p></li>
+    <li><time>1949</time><p>Archaeologists Gerald Lankester Harding and Roland de Vaux excavate Cave 1 and recover hundreds more fragments.</p></li>
+    <li><time>1951–56</time><p>De Vaux excavates the ruins of Khirbet Qumran itself, finding a settlement with cisterns, ritual baths, a large hall and a cemetery.</p></li>
+    <li><time>1952</time><p>Caves 2 to 6 are found. Cave 4, discovered by Bedouin, holds tens of thousands of fragments from more than 500 manuscripts, by far the largest find. Cave 3 yields the Copper Scroll. Wadi Murabba'at caves are explored the same year.</p></li>
+    <li><time>1954</time><p>Mar Samuel advertises his four scrolls in the Wall Street Journal. Yigael Yadin, Sukenik's son, buys them through an intermediary for $250,000, reuniting all seven Cave 1 scrolls in Israel.</p></li>
+    <li><time>1955–56</time><p>Caves 7 to 10 are found in the marl terrace near the site. Cave 11 is found by Bedouin in 1956 and yields the Temple Scroll, the Great Psalms Scroll and the Targum of Job.</p></li>
+    <li><time>1960–61</time><p>Yadin's expeditions to Nahal Hever (the Cave of Letters) find Bar Kokhba's letters and the Babatha archive.</p></li>
+    <li><time>1963–65</time><p>Yadin's excavations at Masada find fragments of 14 scrolls left behind by the rebels.</p></li>
+    <li><time>1965</time><p>The Shrine of the Book opens at the Israel Museum to house the Cave 1 scrolls.</p></li>
+    <li><time>1967</time><p>After the Six-Day War, Yadin acquires the Temple Scroll from Kando, who had kept it hidden.</p></li>
+    <li><time>1991</time><p>After decades of slow publication by a small team, the Huntington Library opens its photographs to all scholars, and a computer-reconstructed text is published, effectively ending the monopoly.</p></li>
+    <li><time>2009–11</time><p>The official edition, Discoveries in the Judaean Desert (DJD), reaches 40 volumes and is essentially complete.</p></li>
+    <li><time>2011–12</time><p>The Israel Museum puts its five Cave 1 scrolls online. The Israel Antiquities Authority launches the Leon Levy Dead Sea Scrolls Digital Library with multispectral photos of the fragments.</p></li>
+    <li><time>2017</time><p>Archaeologists announce a twelfth Qumran cave holding broken jars and wrappings, but its scrolls had already been looted.</p></li>
+    <li><time>2018–20</time><p>The Museum of the Bible in Washington announces that all 16 of its "Dead Sea Scroll" fragments are modern forgeries. Many fragments sold on the market after 2002 are now treated as suspect.</p></li>
+    <li><time>2021</time><p>The Israel Antiquities Authority announces new fragments of the Greek Twelve Minor Prophets (Zechariah and Nahum) from the "Cave of Horror" in Nahal Hever, the first new scroll fragments found in about 60 years.</p></li>
+    <li><time>2025</time><p>A study combining radiocarbon dates with a handwriting-analysis AI model called "Enoch" suggests that several scrolls are older than their handwriting had previously suggested.</p></li>
+  </ol>
+</section>
+
+<section id="sites">
+  <h2>The caves and sites</h2>
+  <p class="prose">Numbers below are the manuscripts listed for each site in the catalogue. A few entries cover groups of tiny fragments, so the totals are approximate.</p>
+  <div class="tablewrap" style="border-top:0">
+  <table class="sites">
+    <thead><tr><th>Site</th><th>Found</th><th>What came out of it</th><th class="n">Entries</th></tr></thead>
+    <tbody id="sitesBody"></tbody>
+  </table>
+  </div>
+</section>
+
+<section id="contents">
+  <h2>What the scrolls contain</h2>
+  <div class="prose">
+    <p>Scholars usually sort the material into a few broad groups. The categories in the catalogue follow the same lines.</p>
+    <h3>Biblical manuscripts</h3>
+    <p>Copies of the books of the Hebrew Bible make up roughly a quarter of the Qumran manuscripts. Every book is represented except Esther (Nehemiah survives only as part of Ezra-Nehemiah, if at all). The most-copied books were Psalms (about 36 copies), Deuteronomy (about 30) and Isaiah (about 21), the same books most often quoted in the New Testament. Some copies follow the text later standardised by the Masoretes. Others match the Hebrew behind the Greek Septuagint, or the expanded text of the Samaritan Pentateuch.</p>
+    <h3>Tefillin and mezuzot</h3>
+    <p>Tiny parchment slips with passages from Exodus and Deuteronomy, once folded into leather phylactery cases or doorpost containers. A few were found still in their cases.</p>
+    <h3>Other religious writings</h3>
+    <p>Works known before 1947 only in translation, like Jubilees, Enoch, Tobit and Ben Sira, now appeared in their original Hebrew or Aramaic. Others were entirely new: retellings of biblical stories (the Genesis Apocryphon), commentaries (pesharim) applying prophecy to current events, hymns, liturgies, wisdom texts, calendars and visions of a new Jerusalem.</p>
+    <h3>Sectarian writings</h3>
+    <p>A smaller group describes a particular community, the Yahad. Its rule books (the Community Rule, the Damascus Document), its hymns and its end-time war plan reveal a priestly group at odds with the Jerusalem temple leadership, led by a "Teacher of Righteousness". Most scholars connect it with the Essenes described by Josephus, Philo and Pliny, though that link is still debated.</p>
+    <h3>Documents</h3>
+    <p>Mostly from sites other than Qumran: letters, contracts, deeds and accounts, including the personal archive of a woman named Babatha and letters from Simon bar Kosiba (Bar Kokhba), leader of the second revolt against Rome.</p>
+  </div>
+</section>
+
+<section id="highlights">
+  <h2>The major scrolls</h2>
+  <p class="prose">These are the best-known and best-preserved manuscripts. Each links to its full text in the catalogue and to its high-resolution images.</p>
+  <article class="scroll" id="h-isaiah"><figure><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Great_Isaiah_Scroll.jpg/1280px-Great_Isaiah_Scroll.jpg" alt="Part of the Great Isaiah Scroll." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load. Use the photo links beside it.</div>'"><figcaption>Part of the Great Isaiah Scroll. Photo: Ardon Bar Hama. <a href="https://commons.wikimedia.org/wiki/File:Great_Isaiah_Scroll.jpg" target="_blank" rel="noopener">Public domain, via Wikimedia Commons</a>.</figcaption></figure><div><p class="sig">1QIsaᵃ</p><h3>The Great Isaiah Scroll</h3><p>The only biblical book among the scrolls that survives complete, all 66 chapters on 17 sheets of parchment sewn together. Its text is very close to the medieval Masoretic text, with thousands of small differences in spelling and some real variant readings. It is the most famous and most photographed of the scrolls.</p><dl><dt>Found</dt><dd>Cave 1, 1947</dd><dt>Length</dt><dd>About 7.3 m, 54 columns</dd><dt>Date</dt><dd>c. 150–100 BCE</dd><dt>Kept at</dt><dd>Shrine of the Book, Jerusalem</dd></dl><p class="links"><a href="dead-sea-scrolls-catalogue.html#read=1QIsaa"><b>Read the text</b></a> <a href="https://www.deadseascrolls.org.il/explore-the-archive/search#q='1QIsaa'" target="_blank" rel="noopener">High-resolution images (Leon Levy library)</a> <a href="http://dss.collections.imj.org.il/isaiah" target="_blank" rel="noopener">Zoomable photos at the Israel Museum</a> <a href="dead-sea-scrolls-catalogue.html#q=1QIsaa">Find in the catalogue</a></p></div></article>
+<article class="scroll" id="h-rule"><figure><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Dead_Sea_Scroll_28a_from_Qumran_Cave_1%2C_complete%2C_the_Jordan_Museum_in_Amman.jpg/1280px-Dead_Sea_Scroll_28a_from_Qumran_Cave_1%2C_complete%2C_the_Jordan_Museum_in_Amman.jpg" alt="The Rule of the Congregation (1QSa, 1Q28a), originally sewn onto the end of the Community Rule scroll. The Jordan Museum, Amman." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load. Use the photo links beside it.</div>'"><figcaption>The Rule of the Congregation (1QSa, 1Q28a), originally sewn onto the end of the Community Rule scroll. The Jordan Museum, Amman. Photo: Osama Shukir Muhammed Amin. <a href="https://commons.wikimedia.org/wiki/File:Dead_Sea_Scroll_28a_from_Qumran_Cave_1,_complete,_the_Jordan_Museum_in_Amman.jpg" target="_blank" rel="noopener">CC BY-SA 4.0, via Wikimedia Commons</a>.</figcaption></figure><div><p class="sig">1QS</p><h3>The Community Rule</h3><p>A handbook for the Yahad community: how to join, a year-long probation, communal meals, penalties for misbehaviour (from interrupting a speaker to falling asleep in the assembly), and a teaching about two spirits, of truth and of falsehood, at war in every person. The Rule of the Congregation (1QSa) and the Rule of Blessings (1QSb) were attached to the same scroll.</p><dl><dt>Found</dt><dd>Cave 1, 1947</dd><dt>Length</dt><dd>About 1.9 m, 11 columns</dd><dt>Date</dt><dd>c. 100–75 BCE</dd><dt>Other copies</dt><dd>4Q255–264, 5Q11</dd></dl><p class="links"><a href="dead-sea-scrolls-catalogue.html#read=1QS"><b>Read the text</b></a> <a href="https://www.deadseascrolls.org.il/explore-the-archive/search#q='1QS'" target="_blank" rel="noopener">High-resolution images (Leon Levy library)</a> <a href="http://dss.collections.imj.org.il/community" target="_blank" rel="noopener">Zoomable photos at the Israel Museum</a> <a href="dead-sea-scrolls-catalogue.html#q=1QS">Find in the catalogue</a></p></div></article>
+<article class="scroll" id="h-habakkuk"><figure><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/The_Commentary_on_Habakkuk_Scroll_%281QpHab%29_Written_in_Hebrew_-_Google_Art_Project.jpg/1280px-The_Commentary_on_Habakkuk_Scroll_%281QpHab%29_Written_in_Hebrew_-_Google_Art_Project.jpg" alt="The Habakkuk Commentary." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load. Use the photo links beside it.</div>'"><figcaption>The Habakkuk Commentary. Google Art Project / The Israel Museum, Jerusalem. <a href="https://commons.wikimedia.org/wiki/File:The_Commentary_on_Habakkuk_Scroll_(1QpHab)_Written_in_Hebrew_-_Google_Art_Project.jpg" target="_blank" rel="noopener">Public domain, via Wikimedia Commons</a>.</figcaption></figure><div><p class="sig">1QpHab</p><h3>The Habakkuk Commentary (Pesher)</h3><p>Quotes Habakkuk a few lines at a time, then explains what each passage &quot;really&quot; refers to: the community&#x27;s own leader, the Teacher of Righteousness, his enemy the Wicked Priest, and the invading Kittim, usually taken to be the Romans. The divine name is written in the old Paleo-Hebrew script, standing out from the square letters around it.</p><dl><dt>Found</dt><dd>Cave 1, 1947</dd><dt>Length</dt><dd>About 1.5 m, 13 columns</dd><dt>Date</dt><dd>Late 1st century BCE</dd><dt>Covers</dt><dd>Habakkuk chapters 1–2</dd></dl><p class="links"><a href="dead-sea-scrolls-catalogue.html#read=1QpHab"><b>Read the text</b></a> <a href="https://www.deadseascrolls.org.il/explore-the-archive/search#q='1QpHab'" target="_blank" rel="noopener">High-resolution images (Leon Levy library)</a> <a href="http://dss.collections.imj.org.il/habakkuk" target="_blank" rel="noopener">Zoomable photos at the Israel Museum</a> <a href="dead-sea-scrolls-catalogue.html#q=1QpHab">Find in the catalogue</a></p></div></article>
+<article class="scroll" id="h-war"><figure><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Dead_Sea_Scrolls_and_caves_and_Qumran_Excavations_of_Essene_Monastery._Scroll_from_%27the_war_of_the_sons_of_light_against_the_sons_of_darkness%27_LOC_matpc.13011.jpg/1280px-thumbnail.jpg" alt="The War Scroll, photographed in the 1950s." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load. Use the photo links beside it.</div>'"><figcaption>The War Scroll, photographed in the 1950s. Matson Photo Service, Library of Congress. <a href="https://commons.wikimedia.org/wiki/File:Dead_Sea_Scrolls_and_caves_and_Qumran_Excavations_of_Essene_Monastery._Scroll_from_%27the_war_of_the_sons_of_light_against_the_sons_of_darkness%27_LOC_matpc.13011.jpg" target="_blank" rel="noopener">Public domain, via Wikimedia Commons</a>.</figcaption></figure><div><p class="sig">1QM</p><h3>The War Scroll</h3><p>A detailed plan for a 40-year final war between the &quot;Sons of Light&quot; and the &quot;Sons of Darkness&quot;, including battle formations, inscriptions for trumpets and banners, weapons and the prayers of the priests. The black wall and white dome of the Shrine of the Book were designed around its imagery.</p><dl><dt>Found</dt><dd>Cave 1, 1947</dd><dt>Length</dt><dd>About 2.9 m, 19 columns</dd><dt>Date</dt><dd>Late 1st century BCE</dd><dt>Other copies</dt><dd>4Q491–496</dd></dl><p class="links"><a href="dead-sea-scrolls-catalogue.html#read=1QM"><b>Read the text</b></a> <a href="https://www.deadseascrolls.org.il/explore-the-archive/search#q='1QM'" target="_blank" rel="noopener">High-resolution images (Leon Levy library)</a> <a href="http://dss.collections.imj.org.il/war" target="_blank" rel="noopener">Zoomable photos at the Israel Museum</a> <a href="dead-sea-scrolls-catalogue.html#q=1QM">Find in the catalogue</a></p></div></article>
+<article class="scroll" id="h-hodayot"><figure><div class="noimg">No freely licensed photo of this scroll is available to embed here.<br>See the high-resolution images in the Leon Levy library.</div></figure><div><p class="sig">1QHᵃ</p><h3>The Thanksgiving Hymns (Hodayot)</h3><p>Around 30 hymns that each begin &quot;I thank you, Lord&quot;. Some speak in the voice of a persecuted leader, perhaps the Teacher of Righteousness himself. Others express the worthlessness of human beings before God and their joy at being given knowledge.</p><dl><dt>Found</dt><dd>Cave 1, 1947</dd><dt>Columns</dt><dd>28 (partly reconstructed)</dd><dt>Date</dt><dd>Late 1st century BCE–early 1st century CE</dd><dt>Other copies</dt><dd>1QHb, 4Q427–432</dd></dl><p class="links"><a href="dead-sea-scrolls-catalogue.html#read=1QHa"><b>Read the text</b></a> <a href="https://www.deadseascrolls.org.il/explore-the-archive/search#q='1QH'" target="_blank" rel="noopener">High-resolution images (Leon Levy library)</a> <a href="dead-sea-scrolls-catalogue.html#q=1QHa">Find in the catalogue</a></p></div></article>
+<article class="scroll" id="h-apgen"><figure><img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Genesis_apocryphon.jpg" alt="A column of the Genesis Apocryphon." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load. Use the photo links beside it.</div>'"><figcaption>A column of the Genesis Apocryphon. Wikimedia Commons. <a href="https://commons.wikimedia.org/wiki/File:Genesis_apocryphon.jpg" target="_blank" rel="noopener">CC BY-SA 4.0, via Wikimedia Commons</a>.</figcaption></figure><div><p class="sig">1QapGen</p><h3>The Genesis Apocryphon</h3><p>A retelling of Genesis in Aramaic, from Lamech and the birth of Noah to Abraham. It adds vivid details the Bible leaves out, such as a long description of Sarah&#x27;s beauty. It was so brittle that it could not be unrolled until 1956, and parts were read only with infrared photography decades later.</p><dl><dt>Found</dt><dd>Cave 1, 1947</dd><dt>Columns</dt><dd>22 surviving</dd><dt>Date</dt><dd>c. 25 BCE–50 CE</dd><dt>Language</dt><dd>Aramaic</dd></dl><p class="links"><a href="dead-sea-scrolls-catalogue.html#read=1QapGen"><b>Read the text</b></a> <a href="https://www.deadseascrolls.org.il/explore-the-archive/search#q='1Q20'" target="_blank" rel="noopener">High-resolution images (Leon Levy library)</a> <a href="dead-sea-scrolls-catalogue.html#q=1QapGen">Find in the catalogue</a></p></div></article>
+<article class="scroll" id="h-copper"><figure><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Strips_1_and_2%2C_parts_of_the_Copper_Dear_Sea_Scrolls%2C_from_Qumran_Cave_3%2C_Jordan_Museum.jpg/1280px-Strips_1_and_2%2C_parts_of_the_Copper_Dear_Sea_Scrolls%2C_from_Qumran_Cave_3%2C_Jordan_Museum.jpg" alt="Strips 1 and 2 of the Copper Scroll, cut apart in 1956 so it could be read. The Jordan Museum, Amman." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load. Use the photo links beside it.</div>'"><figcaption>Strips 1 and 2 of the Copper Scroll, cut apart in 1956 so it could be read. The Jordan Museum, Amman. Photo: Osama Shukir Muhammed Amin. <a href="https://commons.wikimedia.org/wiki/File:Strips_1_and_2,_parts_of_the_Copper_Dear_Sea_Scrolls,_from_Qumran_Cave_3,_Jordan_Museum.jpg" target="_blank" rel="noopener">CC BY-SA 4.0, via Wikimedia Commons</a>.</figcaption></figure><div><p class="sig">3Q15</p><h3>The Copper Scroll</h3><p>Unlike every other scroll, it is engraved on metal and is not a literary text. It lists about 64 hiding places of gold, silver and sacred vessels, with directions like &quot;in the cistern below the rampart&quot;. It was so corroded that in 1955–56 it had to be cut into strips with a saw before it could be read. None of the treasure has ever been found.</p><dl><dt>Found</dt><dd>Cave 3, 1952</dd><dt>Material</dt><dd>Copper with a little tin, about 2.4 m</dd><dt>Date</dt><dd>c. 50–100 CE</dd><dt>Kept at</dt><dd>The Jordan Museum, Amman</dd></dl><p class="links"><a href="dead-sea-scrolls-catalogue.html#read=3Q15"><b>Read the text</b></a> <a href="https://www.deadseascrolls.org.il/explore-the-archive/search#q='3Q15'" target="_blank" rel="noopener">High-resolution images (Leon Levy library)</a> <a href="dead-sea-scrolls-catalogue.html#q=3Q15">Find in the catalogue</a></p></div></article>
+<article class="scroll" id="h-temple"><figure><img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Temple_Scroll.png" alt="A portion of the Temple Scroll (11Q19)." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load. Use the photo links beside it.</div>'"><figcaption>A portion of the Temple Scroll (11Q19). The Israel Museum, Jerusalem. <a href="https://commons.wikimedia.org/wiki/File:Temple_Scroll.png" target="_blank" rel="noopener">Public domain, via Wikimedia Commons</a>.</figcaption></figure><div><p class="sig">11QTᵃ</p><h3>The Temple Scroll</h3><p>Presented as God speaking to Moses in the first person, it gives a plan for an enormous ideal temple, along with laws for festivals, sacrifices, purity and the conduct of the king. Kando hid it in a shoebox under his floor for over ten years before Yigael Yadin acquired it in 1967.</p><dl><dt>Found</dt><dd>Cave 11, 1956</dd><dt>Length</dt><dd>About 8 m, the longest scroll</dd><dt>Date</dt><dd>Late 1st century BCE–1st century CE</dd><dt>Kept at</dt><dd>Shrine of the Book, Jerusalem</dd></dl><p class="links"><a href="dead-sea-scrolls-catalogue.html#read=11Q19"><b>Read the text</b></a> <a href="https://www.deadseascrolls.org.il/explore-the-archive/search#q='11Q19'" target="_blank" rel="noopener">High-resolution images (Leon Levy library)</a> <a href="http://dss.collections.imj.org.il/temple" target="_blank" rel="noopener">Zoomable photos at the Israel Museum</a> <a href="dead-sea-scrolls-catalogue.html#q=11Q19">Find in the catalogue</a></p></div></article>
+<article class="scroll" id="h-psalms"><figure><img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Psalms_Scroll.jpg" alt="The Great Psalms Scroll (11Q5)." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load. Use the photo links beside it.</div>'"><figcaption>The Great Psalms Scroll (11Q5). Photo: Israel Antiquities Authority, via the Library of Congress. <a href="https://commons.wikimedia.org/wiki/File:Psalms_Scroll.jpg" target="_blank" rel="noopener">Public domain, via Wikimedia Commons</a>.</figcaption></figure><div><p class="sig">11QPsᵃ</p><h3>The Great Psalms Scroll</h3><p>Contains about 40 biblical psalms in an order unlike the standard Book of Psalms, mixed with poems not in the Hebrew Bible, including Psalm 151 (known before only in Greek and Syriac). A prose note claims that David wrote 3,600 psalms and 450 songs.</p><dl><dt>Found</dt><dd>Cave 11, 1956</dd><dt>Length</dt><dd>About 4 m surviving, 28 columns</dd><dt>Date</dt><dd>c. 30–50 CE</dd><dt>Contents</dt><dd>Psalms 101–150 and more</dd></dl><p class="links"><a href="dead-sea-scrolls-catalogue.html#read=11Q5"><b>Read the text</b></a> <a href="https://www.deadseascrolls.org.il/explore-the-archive/search#q='11Q5'" target="_blank" rel="noopener">High-resolution images (Leon Levy library)</a> <a href="dead-sea-scrolls-catalogue.html#q=11Q5">Find in the catalogue</a></p></div></article>
+<article class="scroll" id="h-mmt"><figure><img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/4Q396.png" alt="4Q396, one of the six copies of MMT." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load. Use the photo links beside it.</div>'"><figcaption>4Q396, one of the six copies of MMT. Israel Antiquities Authority, via the Library of Congress. <a href="https://commons.wikimedia.org/wiki/File:4Q396.png" target="_blank" rel="noopener">Public domain, via Wikimedia Commons</a>.</figcaption></figure><div><p class="sig">4QMMT</p><h3>Some Works of the Torah (MMT)</h3><p>A letter listing about 20 points of religious law where &quot;we&quot; disagree with how the Jerusalem temple is run, on purity, sacrifices and marriage, and urging &quot;you&quot; to accept &quot;our&quot; interpretation. Many of the rulings match positions later attributed to the Sadducees. Its publication was delayed for decades and became the focus of a famous lawsuit.</p><dl><dt>Found</dt><dd>Cave 4, 1952</dd><dt>Copies</dt><dd>Six, 4Q394–399</dd><dt>Date</dt><dd>Late 1st century BCE–early 1st century CE</dd><dt>Form</dt><dd>A letter</dd></dl><p class="links"><a href="dead-sea-scrolls-catalogue.html#read=4Q394"><b>Read the text</b></a> <a href="https://www.deadseascrolls.org.il/explore-the-archive/search#q='4Q394'" target="_blank" rel="noopener">High-resolution images (Leon Levy library)</a> <a href="dead-sea-scrolls-catalogue.html#q=4Q394">Find in the catalogue</a></p></div></article>
+<article class="scroll" id="h-samuel"><figure><div class="noimg">No freely licensed photo of this scroll is available to embed here.<br>See the high-resolution images in the Leon Levy library.</div></figure><div><p class="sig">4QSamᵃ</p><h3>Samuel a</h3><p>The largest biblical manuscript from Cave 4. It often agrees with the Greek Septuagint against the Masoretic text, and it preserves a paragraph about the cruelty of Nahash the Ammonite king, missing from later Hebrew Bibles, which some modern translations have restored to 1 Samuel 10.</p><dl><dt>Found</dt><dd>Cave 4, 1952</dd><dt>Fragments</dt><dd>Over 100</dd><dt>Date</dt><dd>c. 50–25 BCE</dd><dt>Covers</dt><dd>Much of 1 and 2 Samuel</dd></dl><p class="links"><a href="dead-sea-scrolls-catalogue.html#read=4Q51"><b>Read the text</b></a> <a href="https://www.deadseascrolls.org.il/explore-the-archive/search#q='4Q51'" target="_blank" rel="noopener">High-resolution images (Leon Levy library)</a> <a href="dead-sea-scrolls-catalogue.html#q=4Q51">Find in the catalogue</a></p></div></article>
+<article class="scroll" id="h-damascus"><figure><img src="https://upload.wikimedia.org/wikipedia/commons/7/77/The_Damascus_Document_Scroll.jpg" alt="4Q271, a Cave 4 copy of the Damascus Document." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load. Use the photo links beside it.</div>'"><figcaption>4Q271, a Cave 4 copy of the Damascus Document. Library of Congress exhibit image. <a href="https://commons.wikimedia.org/wiki/File:The_Damascus_Document_Scroll.jpg" target="_blank" rel="noopener">CC0, via Wikimedia Commons</a>.</figcaption></figure><div><p class="sig">CD / 4QD</p><h3>The Damascus Document</h3><p>Two medieval copies turned up in a Cairo synagogue store-room half a century before Qumran, and nobody knew where the text came from. The Qumran copies proved it was a work of the same movement. It tells of a group that went into exile in the &quot;land of Damascus&quot; and lays out its rules for members living in towns, with wives and children.</p><dl><dt>First found</dt><dd>Cairo Genizah, 1896–97</dd><dt>Qumran copies</dt><dd>4Q266–273, 5Q12, 6Q15</dd><dt>Date</dt><dd>Earliest copies c. 100–50 BCE</dd><dt>Language</dt><dd>Hebrew</dd></dl><p class="links"><a href="dead-sea-scrolls-catalogue.html#read=CD"><b>Read the text</b></a> <a href="https://www.deadseascrolls.org.il/explore-the-archive/search#q='4Q266'" target="_blank" rel="noopener">High-resolution images (Leon Levy library)</a> <a href="dead-sea-scrolls-catalogue.html#q=CD">Find in the catalogue</a></p></div></article>
+</section>
+
+<section id="gallery">
+  <h2>Places and objects</h2>
+  <div class="gallery"><figure><a href="https://commons.wikimedia.org/wiki/File:Caves_of_Qumran,_2019_(01).jpg" target="_blank" rel="noopener"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Caves_of_Qumran%2C_2019_%2801%29.jpg/1280px-Caves_of_Qumran%2C_2019_%2801%29.jpg" alt="The marl cliffs and caves at Qumran, above the Dead Sea." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load</div>'"></a><figcaption>The marl cliffs and caves at Qumran, above the Dead Sea. Bahnfrend, CC BY-SA 4.0.</figcaption></figure><figure><a href="https://commons.wikimedia.org/wiki/File:Qumran_Cave_11_Entrance.jpg" target="_blank" rel="noopener"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/Qumran_Cave_11_Entrance.jpg/1280px-Qumran_Cave_11_Entrance.jpg" alt="The entrance to Cave 11, source of the Temple Scroll." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load</div>'"></a><figcaption>The entrance to Cave 11, source of the Temple Scroll. Ian Scott, CC BY-SA 2.0.</figcaption></figure><figure><a href="https://commons.wikimedia.org/wiki/File:Excavations_in_Qumran_01.jpg" target="_blank" rel="noopener"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Excavations_in_Qumran_01.jpg/1280px-Excavations_in_Qumran_01.jpg" alt="The excavated settlement at Khirbet Qumran." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load</div>'"></a><figcaption>The excavated settlement at Khirbet Qumran. Davide Mauro, CC BY-SA 4.0.</figcaption></figure><figure><a href="https://commons.wikimedia.org/wiki/File:Two_Dead_Sea_Scrolls_Jars_at_the_Jordan_Museum,_Amman.jpg" target="_blank" rel="noopener"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Two_Dead_Sea_Scrolls_Jars_at_the_Jordan_Museum%2C_Amman.jpg/1280px-Two_Dead_Sea_Scrolls_Jars_at_the_Jordan_Museum%2C_Amman.jpg" alt="Lidded jars of the kind that held the Cave 1 scrolls." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load</div>'"></a><figcaption>Lidded jars of the kind that held the Cave 1 scrolls. Osama Shukir Muhammed Amin, CC BY-SA 4.0.</figcaption></figure><figure><a href="https://commons.wikimedia.org/wiki/File:Dead_Sea_Scrolls_Before_Unraveled.jpg" target="_blank" rel="noopener"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Dead_Sea_Scrolls_Before_Unraveled.jpg" alt="Scrolls as they were found, before being unrolled." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load</div>'"></a><figcaption>Scrolls as they were found, before being unrolled. A. M. Habermann, Public domain.</figcaption></figure><figure><a href="https://commons.wikimedia.org/wiki/File:Israel_-_Jerusalem_-_Shrine_of_the_Book.jpg" target="_blank" rel="noopener"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Israel_-_Jerusalem_-_Shrine_of_the_Book.jpg/1280px-Israel_-_Jerusalem_-_Shrine_of_the_Book.jpg" alt="The Shrine of the Book at the Israel Museum. Its dome is shaped like the lid of a scroll jar." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load</div>'"></a><figcaption>The Shrine of the Book at the Israel Museum. Its dome is shaped like the lid of a scroll jar. Wikimedia Commons, CC BY 2.5.</figcaption></figure><figure><a href="https://commons.wikimedia.org/wiki/File:Dead_Sea_Scroll_175,_complete,_Testimonia,_from_Qumran_Cave_4,_the_Jordan_Museum_in_Amman.jpg" target="_blank" rel="noopener"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Dead_Sea_Scroll_175%2C_complete%2C_Testimonia%2C_from_Qumran_Cave_4%2C_the_Jordan_Museum_in_Amman.jpg/1280px-Dead_Sea_Scroll_175%2C_complete%2C_Testimonia%2C_from_Qumran_Cave_4%2C_the_Jordan_Museum_in_Amman.jpg" alt="4Q175, the Testimonia: a single complete sheet. The Jordan Museum, Amman." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load</div>'"></a><figcaption>4Q175, the Testimonia: a single complete sheet. The Jordan Museum, Amman. Osama Shukir Muhammed Amin, CC BY-SA 4.0.</figcaption></figure><figure><a href="https://commons.wikimedia.org/wiki/File:4Q41_1.png" target="_blank" rel="noopener"><img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/4Q41_1.png" alt="4Q41, the &quot;All Souls Deuteronomy&quot;, with the Ten Commandments." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load</div>'"></a><figcaption>4Q41, the &quot;All Souls Deuteronomy&quot;, with the Ten Commandments. Photo: Shai Halevi, Public domain.</figcaption></figure><figure><a href="https://commons.wikimedia.org/wiki/File:Dead_Sea_Scroll_109,_Qohelet_or_Ecclesiastes,_from_Qumran_Cave_4,_the_Jordan_Museum_in_Amman.jpg" target="_blank" rel="noopener"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Dead_Sea_Scroll_109%2C_Qohelet_or_Ecclesiastes%2C_from_Qumran_Cave_4%2C_the_Jordan_Museum_in_Amman.jpg/1280px-Dead_Sea_Scroll_109%2C_Qohelet_or_Ecclesiastes%2C_from_Qumran_Cave_4%2C_the_Jordan_Museum_in_Amman.jpg" alt="4Q109, Ecclesiastes. The Jordan Museum, Amman." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load</div>'"></a><figcaption>4Q109, Ecclesiastes. The Jordan Museum, Amman. Osama Shukir Muhammed Amin, CC BY-SA 4.0.</figcaption></figure><figure><a href="https://commons.wikimedia.org/wiki/File:4Q201.jpg" target="_blank" rel="noopener"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/4Q201.jpg" alt="4Q201, Enoch, one of the oldest copies of the Book of the Watchers." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load</div>'"></a><figcaption>4Q201, Enoch, one of the oldest copies of the Book of the Watchers. Israel Antiquities Authority, Public domain.</figcaption></figure><figure><a href="https://commons.wikimedia.org/wiki/File:4Q448.jpg" target="_blank" rel="noopener"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/4Q448.jpg" alt="4Q448, a psalm and a prayer for &quot;King Jonathan&quot;." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load</div>'"></a><figcaption>4Q448, a psalm and a prayer for &quot;King Jonathan&quot;. Israel Antiquities Authority, Public domain.</figcaption></figure><figure><a href="https://commons.wikimedia.org/wiki/File:7Q5.jpg" target="_blank" rel="noopener"><img src="https://upload.wikimedia.org/wikipedia/commons/1/16/7Q5.jpg" alt="7Q5, a tiny Greek papyrus scrap from Cave 7." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load</div>'"></a><figcaption>7Q5, a tiny Greek papyrus scrap from Cave 7. Wikimedia Commons, Public domain.</figcaption></figure><figure><a href="https://commons.wikimedia.org/wiki/File:Lxx_Minorprophets.gif" target="_blank" rel="noopener"><img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Lxx_Minorprophets.gif" alt="The Greek Minor Prophets scroll from Nahal Hever, with God&#x27;s name written in Paleo-Hebrew letters inside the Greek." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load</div>'"></a><figcaption>The Greek Minor Prophets scroll from Nahal Hever, with God&#x27;s name written in Paleo-Hebrew letters inside the Greek. Wikimedia Commons, Public domain.</figcaption></figure><figure><a href="https://commons.wikimedia.org/wiki/File:11Q1.jpg" target="_blank" rel="noopener"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/11Q1.jpg" alt="11Q1, Leviticus in Paleo-Hebrew script." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load</div>'"></a><figcaption>11Q1, Leviticus in Paleo-Hebrew script. Israel Antiquities Authority, Public domain.</figcaption></figure><figure><a href="https://commons.wikimedia.org/wiki/File:Djd_books.jpg" target="_blank" rel="noopener"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Djd_books.jpg/1280px-Djd_books.jpg" alt="The 40 volumes of Discoveries in the Judaean Desert, the official edition." loading="lazy" onerror="this.outerHTML='<div class=noimg>Image could not load</div>'"></a><figcaption>The 40 volumes of Discoveries in the Judaean Desert, the official edition. Sf2000, CC BY-SA 4.0.</figcaption></figure></div>
+</section>
+
+<section id="catalogue" class="to-cat">
+  <h2>The full catalogue</h2>
+  <p class="prose">All 1,097 manuscripts are listed on a separate catalogue page. You can search and filter them there, read each one's full surviving text in Hebrew or Aramaic with English beside it, and open its photographs.</p>
+  <p><a class="cta" href="dead-sea-scrolls-catalogue.html">Open the catalogue</a></p>
+</section>
+<section id="book" class="to-cat">
+  <h2>Read them as a book</h2>
+  <p class="prose">A companion reading edition gathers everything legible into 37 chapters by subject: the Bible as the scrolls preserve it, including the Greek scrolls, the stories of Enoch, Noah and Abraham, the Community's rules, prayers, wisdom and visions of the end, and the letters and family papers that refugees of the Bar Kokhba revolt hid in nearby caves. Each chapter is set beside passages from the Hebrew Bible, the New Testament, the Quran, the Talmud, the Ethiopian Bible, Zoroastrian scripture, and Hindu and Buddhist texts. The complete 1 Enoch and Jubilees are included.</p>
+  <p><a class="cta" href="dead-sea-scrolls-book.html">Open the book</a></p>
+</section>
+
+<section id="sigla">
+  <h2>Reading a scroll's label</h2>
+  <div class="prose"><p>Every manuscript has a short label, called a siglum, that packs in where it was found, what it is and which copy it is. Here is one taken apart:</p></div>
+  <div class="anatomy" aria-label="4QpaleoDeut r, broken into parts">
+    <span>4<small>Cave number</small></span>
+    <span>Q<small>Qumran</small></span>
+    <span>paleo<small>Written in Paleo-Hebrew script</small></span>
+    <span>Deut<small>Deuteronomy</small></span>
+    <span><sup>r</sup><small>The 18th copy found in that cave</small></span>
+  </div>
+  <div class="prose"><p>Each manuscript also has a plain number, like 4Q45 for that same Deuteronomy copy, which is how the photo archives index them. Other abbreviations you'll see:</p></div>
+  <div class="abbr">
+    <div><b>p</b> pesher, a commentary (1QpHab)</div>
+    <div><b>pap</b> written on papyrus, not parchment</div>
+    <div><b>ar</b> in Aramaic</div>
+    <div><b>gr</b> in Greek</div>
+    <div><b>tg</b> targum, an Aramaic translation</div>
+    <div><b>apocr</b> apocryphon, a retold or extra-biblical work</div>
+    <div><b>S</b> Serekh, the Community Rule</div>
+    <div><b>D</b> the Damascus Document</div>
+    <div><b>M</b> Milhamah, the War Scroll</div>
+    <div><b>H</b> Hodayot, the Thanksgiving Hymns</div>
+    <div><b>T</b> the Temple Scroll</div>
+    <div><b>MMT</b> Miqsat Ma'ase ha-Torah</div>
+    <div><b>Mur</b> Wadi Murabba'at</div>
+    <div><b>Hev</b> Nahal Hever</div>
+    <div><b>Mas</b> Masada</div>
+    <div><b>PAM</b> a fragment known only by its Palestine Archaeological Museum photo number</div>
+  </div>
+</section>
+
+<section id="photos">
+  <h2>Where to see the photos</h2>
+  <p class="prose">Almost every fragment has been photographed, and the main archives are free to use online.</p>
+  <div class="archives">
+    <div><h4><a href="https://www.deadseascrolls.org.il/" target="_blank" rel="noopener">Leon Levy Dead Sea Scrolls Digital Library</a></h4><p>The Israel Antiquities Authority's archive. Multispectral and infrared images of nearly every fragment, plus the historic 1950s photographs. The "Photos" links in the catalogue page go here.</p></div>
+    <div><h4><a href="http://dss.collections.imj.org.il/" target="_blank" rel="noopener">The Digital Dead Sea Scrolls (Israel Museum)</a></h4><p>Very high-resolution, zoomable photos of the Great Isaiah Scroll, Community Rule, War Scroll, Temple Scroll and Habakkuk Commentary, with an English translation of Isaiah.</p></div>
+    <div><h4><a href="https://www.imj.org.il/en/wings/shrine-book" target="_blank" rel="noopener">Shrine of the Book, Jerusalem</a></h4><p>Where the Cave 1 scrolls and the Temple Scroll are kept. A facsimile of the Isaiah scroll is on permanent display; originals rotate for conservation.</p></div>
+    <div><h4><a href="https://jordanmuseum.jo/" target="_blank" rel="noopener">The Jordan Museum, Amman</a></h4><p>Holds the Copper Scroll and other fragments that were in Jordanian custody before 1967.</p></div>
+    <div><h4><a href="https://commons.wikimedia.org/wiki/Category:Dead_Sea_Scrolls" target="_blank" rel="noopener">Wikimedia Commons</a></h4><p>Freely licensed photos of the scrolls, the caves and the Qumran site. The photos on this page come from here.</p></div>
+    <div><h4><a href="https://www.loc.gov/exhibits/scrolls/" target="_blank" rel="noopener">Library of Congress exhibit</a></h4><p>An online version of the 1993 "Scrolls from the Dead Sea" exhibition, with images and background essays.</p></div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<footer id="sources">
+  <div class="in">
+    <h2>Sources</h2>
+    <ul>
+      <li>Catalogue: the <a href="https://en.wikipedia.org/wiki/List_of_the_Dead_Sea_Scrolls" target="_blank" rel="noopener">Wikipedia list of the Dead Sea Scrolls</a> (CC BY-SA), merged with the scroll inventory of the <a href="https://github.com/ETCBC/dss" target="_blank" rel="noopener">ETCBC Dead Sea Scrolls dataset</a> (Martin Abegg, James Bowley and Edward Cook's transcriptions, CC BY-NC 4.0), with titles following the standard DJD catalogue. Fragment and line counts come from the ETCBC data.</li>
+      <li>Photos: Wikimedia Commons; individual credits and licences appear under each image.</li>
+      <li>Background: Emanuel Tov, <i>Revised Lists of the Texts from the Judaean Desert</i> (Brill, 2010); James VanderKam and Peter Flint, <i>The Meaning of the Dead Sea Scrolls</i> (2002); Israel Antiquities Authority and Israel Museum materials.</li>
+      <li>2025 dating study: Popović et al., "Dating ancient manuscripts using radiocarbon and AI-based writing style analysis," PLOS One (June 2025); see <a href="https://www.sdu.dk/en/om-sdu/institutter-centre/fysik_kemi_og_farmaci/aktuelt/2025_06_04_dead-sea-scrolls" target="_blank" rel="noopener">University of Southern Denmark</a>.</li>
+    </ul>
+    <p>Dates and identifications of small fragments are often uncertain and debated; check the Leon Levy library or the DJD volumes before citing a specific detail.</p>
+  </div>
+</footer>
+
+<script>
+const COUNTS={"1Q": 51, "2Q": 27, "3Q": 13, "4Q": 717, "5Q": 17, "6Q": 30, "7Q": 7, "8Q": 5, "9Q": 1, "10Q": 1, "11Q": 31, "KhQ": 3, "X": 9, "PAM": 42, "Mur": 76, "Hev": 53, "Se": 2, "Sdeir": 1, "Mas": 9, "Arug": 1, "Genizah": 1};
+const SITES = {
+ '1Q':['Qumran Cave 1','1947 (Bedouin); excavated 1949','The seven original scrolls, kept in jars: Isaiah a and b, Community Rule, Habakkuk Pesher, War Scroll, Thanksgiving Hymns, Genesis Apocryphon, plus many fragments.'],
+ '2Q':['Qumran Cave 2','1952 (Bedouin)','Fragments of about 30 manuscripts, mostly biblical, plus Jubilees, Ben Sira and New Jerusalem.'],
+ '3Q':['Qumran Cave 3','1952 (archaeologists)','The Copper Scroll, plus fragments of Ezekiel, Psalms, Lamentations and a pesher on Isaiah.'],
+ '4Q':['Qumran Cave 4','1952 (Bedouin and archaeologists)','The richest cave: tens of thousands of fragments from over 500 manuscripts, about three-quarters of the whole Qumran collection.'],
+ '5Q':['Qumran Cave 5','1952 (archaeologists)','About 25 badly decayed manuscripts, including Deuteronomy, Kings, Isaiah, Lamentations and the Community Rule.'],
+ '6Q':['Qumran Cave 6','1952 (Bedouin)','About 30 small manuscripts, several on papyrus: Genesis and Leviticus in Paleo-Hebrew, Kings, Daniel, the Damascus Document.'],
+ '7Q':['Qumran Cave 7','1955 (archaeologists)','Only Greek papyri: Exodus, the Letter of Jeremiah and tiny unidentified scraps, including the much-debated 7Q5.'],
+ '8Q':['Qumran Cave 8','1955 (archaeologists)','Genesis, Psalms, a phylactery, a mezuzah and a hymn.'],
+ '9Q':['Qumran Cave 9','1955 (archaeologists)','A single papyrus fragment.'],
+ '10Q':['Qumran Cave 10','1955 (archaeologists)','An ostracon (potsherd) with two letters.'],
+ '11Q':['Qumran Cave 11','1956 (Bedouin)','The Temple Scroll, the Great Psalms Scroll, the Targum of Job, Melchizedek and Paleo-Leviticus.'],
+ 'KhQ':['Khirbet Qumran','1951–56; 1996','Ostraca (inscribed potsherds) from the settlement itself.'],
+ 'X':['Unknown caves','—','Phylacteries and fragments bought on the antiquities market whose exact cave is unknown.'],
+ 'PAM':['Unassigned fragments','—','Small fragments known only by the number of the 1950s Palestine Archaeological Museum photograph that shows them.'],
+ 'Mur':["Wadi Murabba'at",'1951–52','A scroll of the Twelve Minor Prophets, other biblical texts and Bar Kokhba-era letters and contracts.'],
+ 'Hev':['Nahal Hever','1951–61','The Cave of Letters and Cave of Horror: the Greek Minor Prophets scroll, biblical fragments, the Babatha archive and Bar Kokhba letters.'],
+ 'Se':["Nahal Se'elim",'1960','Small biblical fragments and documents.'],
+ 'Sdeir':['Wadi Sdeir','1952','A Genesis scroll.'],
+ 'Mas':['Masada','1963–65','Biblical scrolls (Genesis, Leviticus, Deuteronomy, Ezekiel, Psalms), Ben Sira and Songs of the Sabbath Sacrifice, left by the rebels before 73/74 CE.'],
+ 'Arug':['Nahal Arugot','2004','A small Leviticus fragment, found during a survey.'],
+ 'Genizah':['Cairo Genizah','1896–97','Not a Dead Sea site: medieval copies of the Damascus Document from a Cairo synagogue store-room, later matched by copies from Qumran.']
+};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+document.getElementById('sitesBody').innerHTML=Object.keys(SITES).filter(k=>COUNTS[k]).map(k=>`<tr><td>${esc(SITES[k][0])}</td><td>${esc(SITES[k][1])}</td><td>${esc(SITES[k][2])}</td><td class="n"><a href="dead-sea-scrolls-catalogue.html#site=${k}" aria-label="${COUNTS[k]} manuscripts from ${esc(SITES[k][0])} in the catalogue">${COUNTS[k]}</a></td></tr>`).join('');
+const links=[...document.querySelectorAll('nav.toc a')];
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+en.target.id))}}),{rootMargin:'-30% 0px -65% 0px'});
+document.querySelectorAll('main section, footer').forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
